@@ -1,0 +1,23 @@
+{% extends 'eapp/base.html' %}
+
+{% block content %}
+<div class="col-sm-8 col-sm-offset-2">
+	{% for lt in lists %}
+		<div class="row">
+		  <div class="col-sm-12">
+		    <div class="thumbnail">
+		      {% if lt.image%}
+		      <img src="{{ lt.image.url }}" class="img-responsive">
+		      {% endif %}
+		      <!img src="..." alt="...">
+		      <div class="caption">
+		        <h3><a href="{% url 'eapp:detail' lt.id %}">{{ lt.title}}</a><small>  {{ lt.timestamp|timesince }} ago</small></h3>
+		        <p>{{ lt.content|linebreaks|truncatechars:120 }}</p>
+		        <p><a href="{% url 'eapp:detail' lt.id %}" class="btn btn-primary" role="button">View</a></p>
+		      </div>
+		    </div>
+		  </div>
+	{% endfor %}
+</div>
+
+{% endblock %}
